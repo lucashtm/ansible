@@ -1,15 +1,8 @@
-- name: Install node and npm
-  apt:
-    name: ["nodejs", "npm"]
-  tags:
-    - node
-- name: Install n(ode version manager)
-  npm:
-    name: n
-    global: true
-  tags:
-    - node
-- name: n 18
-  shell: n 18
-  tags:
-    - node
+# - name: Install node asdf plugin
+#   shell: asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+#   tags:
+#     - node
+# - name: Install node 18
+#   shell: asdf global nodejs 18.12.1
+#   tags:
+#     - node
