@@ -1,0 +1,24 @@
+- name: Fetch dotfiles
+  ansible.builtin.git:
+    repo: "git@github.com:lucashtm/.dotfiles.git"
+    dest: "~/.dotfiles"
+    accept_hostkey: yes
+  tags:
+    - dotfiles
+- name: Install stow
+  apt:
+    name: "stow"
+  tags:
+    - dotfiles
+- name: Stow zsh
+  shell: chdir=~/.dotfiles stow zsh
+  tags:
+    - dotfiles
+- name: Stow asdf
+  command: chdir=~/.dotfiles stow asdf
+  tags:
+    - dotfiles
+- name: Stow neovim
+  command: chdir=~/.dotfiles stow nvim
+  tags:
+    - dotfiles

@@ -1,0 +1,24 @@
+- name: Install ruby asdf plugin
+  shell: asdf plugin add ruby https://github.com/asdf-vm/asdf-ruby.git
+  args:
+    executable: /bin/zsh
+  tags:
+    - ruby
+- name: Install ruby 2.7
+  shell: asdf install ruby 2.7.6
+  args:
+    executable: /bin/zsh
+  tags:
+    - ruby
+- name: Sets ruby 2.7 as global
+  shell: asdf global ruby 2.7.6
+  args:
+    executable: /bin/zsh
+  tags:
+    - ruby
+- name: Installs solargraph
+  shell: gem install solargraph
+  args:
+    executable: /bin/zsh
+  tags:
+    - ruby

@@ -16,3 +16,5 @@
     dest: "~/.oh-my-zsh/plugins/zsh-autosuggestions"
   tags:
     - zsh
+- name: Remove .zshrc
+  shell: "rm $HOME/.zshrc"

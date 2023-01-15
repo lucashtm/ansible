@@ -1,0 +1,60 @@
+- name: Ensure .ssh directory exists.
+  file:
+    dest: "{{ dest_rsa_key | dirname }}"
+    mode: 0700
+    state: directory
+  tags:
+    - dotfiles
+    - ssh
+- name: Install rsa ssh key
+  copy:
+    src: "{{ source_rsa_key }}"
+    dest: "{{ dest_rsa_key }}"
+    mode: 0600
+  tags:
+    - dotfiles
+    - ssh
+- name: Install rsa ssh key public
+  copy:
+    src: "{{ source_rsa_key }}.pub"
+    dest: "{{ dest_rsa_key }}.pub"
+    mode: 0644
+  tags:
+    - dotfiles
+    - ssh
+- name: Set authorized rsa key took from file
+  authorized_key:
+    user: "{{ lookup('env', 'USER') or 'root' }}"
+    state: present
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+  with_fileglob:
+  - "{{ lookup('env', 'HOME') }}/.ssh/*.pub"
+  tags:
+    - dotfiles
+    - ssh
+- name: Install ed25519 ssh key
+  copy:
+    src: "{{ source_ed25519_key }}"
+    dest: "{{ dest_ed25519_key }}"
+    mode: 0600
+  tags:
+    - dotfiles
+    - ssh
+- name: Install ed25519 ssh key public
+  copy:
+    src: "{{ source_ed25519_key }}.pub"
+    dest: "{{ dest_ed25519_key }}.pub"
+    mode: 0644
+  tags:
+    - dotfiles
+    - ssh
+- name: Set authorized ed25519 key took from file
+  authorized_key:
+    user: "{{ lookup('env', 'USER') or 'root' }}"
+    state: present
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_ed25519.pub') }}"
+  with_fileglob:
+  - "{{ lookup('env', 'HOME') }}/.ssh/*.pub"
+  tags:
+    - dotfiles
+    - ssh

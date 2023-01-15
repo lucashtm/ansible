@@ -1,8 +1,18 @@
-# - name: Install node asdf plugin
-#   shell: asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-#   tags:
-#     - node
-# - name: Install node 18
-#   shell: asdf global nodejs 18.12.1
-#   tags:
-#     - node
+- name: Install node asdf plugin
+  shell: asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+  args:
+    executable: /bin/zsh
+  tags:
+    - node
+- name: Install node 18
+  shell: asdf install nodejs 18.12.1
+  args:
+    executable: /bin/zsh
+  tags:
+    - node
+- name: Sets node 18 as global
+  shell: asdf global nodejs 18.12.1
+  args:
+    executable: /bin/zsh
+  tags:
+    - node

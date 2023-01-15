@@ -1,0 +1,14 @@
+- name: Core 1
+  apt:
+    name: ["ninja-build", "gettext", "libtool", "libtool-bin", "autoconf", "automake", "cmake", "g++", "pkg-config", "unzip", "curl", "doxygen", "ripgrep"]
+  tags:
+    - neovim
+    - docker
+- name: Core 2
+  apt:
+    name: ["autoconf", "bison", "patch", "build-essential", "rustc", "libssl-dev", "libyaml-dev", "libreadline6-dev", "zlib1g-dev", "libgmp-dev", "libncurses5-dev", "libffi-dev", "libgdbm6", "libgdbm-dev", "libdb-dev", "uuid-dev"]
+- name: Core 3
+  apt:
+    name: ["ca-certificates", "gnupg", "lsb-release", "software-properties-common", "apt-transport-https"]
+  tags:
+    - docker

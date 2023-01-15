@@ -1,5 +1,10 @@
 - hosts: localhost
   become: true
+  vars:
+    source_rsa_key: "./.ssh/id_rsa"
+    dest_rsa_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
+    source_ed25519_key: "./.ssh/id_ed25519"
+    dest_ed25519_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
   pre_tasks:
     - name: Update cache
       apt:
@@ -8,19 +13,14 @@
         - zsh
         - node
   tasks:
+    - include: tasks/core-utilities.yml
+    - include: tasks/docker.yml
+    - include: tasks/ssh.yml
+    - include: tasks/git-config.yml
     - include: tasks/zsh.yml
-    - name: Install asdf
-      ansible.builtin.git:
-        repo: "https://github.com/asdf-vm/asdf.git"
-        dest: "~/.asdf"
-        version: "v0.10.2"
-      tags:
-        - node
-        - asdf
-    - name: Update zshrc
-      shell: echo '. $HOME/.asdf/asdf.sh' >> ~/.zshrc
-      tags:
-        - asdf
-        - node
+    - include: tasks/asdf.yml
+    - include: tasks/dotfiles.yml
     - include: tasks/node.yml
+    - include: tasks/ruby.yml
+    - include: tasks/neovim.yml
 
