@@ -1,7 +1,7 @@
 - name: Fetch dotfiles
   ansible.builtin.git:
     repo: "git@github.com:lucashtm/.dotfiles.git"
-    dest: "~/.dotfiles"
+    dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
     accept_hostkey: yes
   tags:
     - dotfiles
@@ -11,14 +11,14 @@
   tags:
     - dotfiles
 - name: Stow zsh
-  shell: chdir=~/.dotfiles stow zsh
+  shell: chdir=$HOME/.dotfiles stow zsh
   tags:
     - dotfiles
 - name: Stow asdf
-  command: chdir=~/.dotfiles stow asdf
+  command: chdir=$HOME/.dotfiles stow asdf
   tags:
     - dotfiles
 - name: Stow neovim
-  command: chdir=~/.dotfiles stow nvim
+  command: chdir=$HOME/.dotfiles stow nvim
   tags:
     - dotfiles
