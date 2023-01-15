@@ -7,11 +7,11 @@
 - name: Clone repo
   ansible.builtin.git:
     repo: https://github.com/neovim/neovim
-    dest: ~/.neovim-source
+    dest: "{{ lookup('env', 'HOME') }}/.neovim-source"
     version: v0.8.2
   tags:
     - neovim
 - name: Install neovim
-  shell: chdir=~/.neovim-source make CMAKE_BUILD_TYPE=Release && make install
+  shell: chdir=$HOME/.neovim-source make CMAKE_BUILD_TYPE=Release && make install
   tags:
     - neovim
