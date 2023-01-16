@@ -8,6 +8,8 @@
     dest_ed25519_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
   pre_tasks:
     - name: Update cache
+      become: true
+      become_user: lucas
       apt:
         update_cache: true
       tags:
