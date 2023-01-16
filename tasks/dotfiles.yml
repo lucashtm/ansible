@@ -12,14 +12,17 @@
   tags:
     - dotfiles
 - name: Stow zsh
+  become_user: lucas
   shell: chdir=$HOME/.dotfiles stow zsh
   tags:
     - dotfiles
 - name: Stow asdf
+  become_user: lucas
   command: chdir=$HOME/.dotfiles stow asdf
   tags:
     - dotfiles
 - name: Stow neovim
+  become_user: lucas
   command: chdir=$HOME/.dotfiles stow nvim
   tags:
     - dotfiles

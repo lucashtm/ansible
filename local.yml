@@ -1,6 +1,5 @@
 - hosts: localhost
   become: true
-  become_user: lucas
   vars:
     source_rsa_key: "./.ssh/id_rsa"
     dest_rsa_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
@@ -8,7 +7,6 @@
     dest_ed25519_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
   pre_tasks:
     - name: Update cache
-      become_user: root
       apt:
         update_cache: true
       tags:
