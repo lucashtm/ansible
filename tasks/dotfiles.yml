@@ -1,4 +1,5 @@
 - name: Fetch dotfiles
+  become_user: lucas
   ansible.builtin.git:
     repo: "git@github.com:lucashtm/.dotfiles.git"
     dest: "{{ lookup('env', 'HOME') }}/.dotfiles"
