@@ -7,6 +7,7 @@
     - dotfiles
     - ssh
 - name: Install rsa ssh key
+  become_user: lucas
   copy:
     src: "{{ source_rsa_key }}"
     dest: "{{ dest_rsa_key }}"
@@ -15,6 +16,7 @@
     - dotfiles
     - ssh
 - name: Install rsa ssh key public
+  become_user: lucas
   copy:
     src: "{{ source_rsa_key }}.pub"
     dest: "{{ dest_rsa_key }}.pub"
@@ -33,6 +35,7 @@
     - dotfiles
     - ssh
 - name: Install ed25519 ssh key
+  become_user: lucas
   copy:
     src: "{{ source_ed25519_key }}"
     dest: "{{ dest_ed25519_key }}"
@@ -41,6 +44,7 @@
     - dotfiles
     - ssh
 - name: Install ed25519 ssh key public
+  become_user: lucas
   copy:
     src: "{{ source_ed25519_key }}.pub"
     dest: "{{ dest_ed25519_key }}.pub"
