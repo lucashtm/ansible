@@ -1,5 +1,6 @@
 - hosts: localhost
   become: true
+  become_user: lucas
   vars:
     source_rsa_key: "./.ssh/id_rsa"
     dest_rsa_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
