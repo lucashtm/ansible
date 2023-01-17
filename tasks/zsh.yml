@@ -3,22 +3,21 @@
   tags:
     - zsh
 - name: Change shell
-  become_user: lucas
   shell: chsh -s `which zsh`
   tags:
     - zsh
 - name: Install oh-my-zsh
-  become_user: lucas
+  become: false
   shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
   tags:
     - zsh
 - name: Install zsh autosuggestions
-  become_user: lucas
   ansible.builtin.git:
     repo: "https://github.com/zsh-users/zsh-autosuggestions.git"
     dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/plugins/zsh-autosuggestions"
   tags:
     - zsh
-- name: Remove .zshrc
-  become_user: lucas
-  shell: "rm $HOME/.zshrc"
+- name: Ensure .zshrc doesnt exist
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.zshrc"
+    state: absent

@@ -1,17 +1,34 @@
+- name: Debug ZSH user
+  become: false
+  shell: whoami
+  register: username
+  args:
+    executable: /bin/zsh
+  tags:
+    - debug
+- name: Debug ZSH user
+  debug:
+    msg:
+      - "{{ username.stdout }}"
+  tags:
+    - debug
 - name: Install node asdf plugin
-  shell: asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+  become: false
+  shell: "{{ asdf_bin }} plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git"
   args:
     executable: /bin/zsh
   tags:
     - node
 - name: Install node 18
-  shell: asdf install nodejs 18.12.1
+  become: false
+  shell: "{{ asdf_bin }} install nodejs 18.12.1"
   args:
     executable: /bin/zsh
   tags:
     - node
 - name: Sets node 18 as global
-  shell: asdf global nodejs 18.12.1
+  become: false
+  shell: "{{ asdf_bin }} global nodejs 18.12.1"
   args:
     executable: /bin/zsh
   tags:

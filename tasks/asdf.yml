@@ -1,4 +1,5 @@
 - name: Install asdf
+  become: false
   ansible.builtin.git:
     repo: "https://github.com/asdf-vm/asdf.git"
     dest: "{{ lookup('env', 'HOME') }}/.asdf"

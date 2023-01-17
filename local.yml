@@ -1,10 +1,11 @@
 - hosts: localhost
   become: true
   vars:
-    source_rsa_key: "./.ssh/id_rsa"
+    source_rsa_key: ".ssh/id_rsa"
     dest_rsa_key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa"
-    source_ed25519_key: "./.ssh/id_ed25519"
+    source_ed25519_key: ".ssh/id_ed25519"
     dest_ed25519_key: "{{ lookup('env', 'HOME') }}/.ssh/id_ed25519"
+    asdf_bin: "{{ lookup('env', 'HOME') }}/.asdf/bin/asdf"
   pre_tasks:
     - name: Update cache
       apt:

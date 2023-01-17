@@ -1,25 +1,40 @@
 - name: Ensure .ssh directory exists.
   file:
     dest: "{{ dest_rsa_key | dirname }}"
+    owner: lucas
+    group: lucas
     mode: 0700
     state: directory
   tags:
     - dotfiles
     - ssh
+- name: DEBUG
+  command: whoami
+  register: location
+  tags:
+    - debug
+- name: DEBUG
+  debug:
+    msg:
+      - "{{ location.stdout }}"
+  tags:
+    - debug
 - name: Install rsa ssh key
-  become_user: lucas
   copy:
     src: "{{ source_rsa_key }}"
     dest: "{{ dest_rsa_key }}"
+    owner: lucas
+    group: lucas
     mode: 0600
   tags:
     - dotfiles
     - ssh
 - name: Install rsa ssh key public
-  become_user: lucas
   copy:
     src: "{{ source_rsa_key }}.pub"
     dest: "{{ dest_rsa_key }}.pub"
+    owner: lucas
+    group: lucas
     mode: 0644
   tags:
     - dotfiles
@@ -35,19 +50,21 @@
     - dotfiles
     - ssh
 - name: Install ed25519 ssh key
-  become_user: lucas
   copy:
     src: "{{ source_ed25519_key }}"
     dest: "{{ dest_ed25519_key }}"
+    owner: lucas
+    group: lucas
     mode: 0600
   tags:
     - dotfiles
     - ssh
 - name: Install ed25519 ssh key public
-  become_user: lucas
   copy:
     src: "{{ source_ed25519_key }}.pub"
     dest: "{{ dest_ed25519_key }}.pub"
+    owner: lucas
+    group: lucas
     mode: 0644
   tags:
     - dotfiles
