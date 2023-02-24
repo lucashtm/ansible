@@ -1,3 +1,21 @@
+- name: Ensure Work directory exists.
+  file:
+    dest: "{{ lookup('env', 'HOME') }}/Work/repos"
+    owner: lucas
+    group: lucas
+    mode: 0700
+    state: directory
+  tags:
+    - dotfiles
+- name: Ensure Dev directory exists.
+  file:
+    dest: "{{ lookup('env', 'HOME') }}/Dev"
+    owner: lucas
+    group: lucas
+    mode: 0700
+    state: directory
+  tags:
+    - dotfiles
 - name: Fetch dotfiles
   become_user: lucas
   ansible.builtin.git:
