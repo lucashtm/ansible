@@ -26,3 +26,18 @@
   command: chdir=$HOME/.dotfiles stow nvim
   tags:
     - dotfiles
+- name: Stow i3
+  become_user: lucas
+  command: chdir=$HOME/.dotfiles stow i3
+  tags:
+    - dotfiles
+- name: Stow tmux
+  become_user: lucas
+  command: chdir=$HOME/.dotfiles stow tmux
+  tags:
+    - dotfiles
+- name: Stow local bin scripts
+  become_user: lucas
+  command: chdir=$HOME/.dotfiles stow bin
+  tags:
+    - dotfiles
