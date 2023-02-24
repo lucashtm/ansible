@@ -24,4 +24,5 @@
     - include: tasks/node.yml
     - include: tasks/ruby.yml
     - include: tasks/neovim.yml
+    - include: tasks/brave.yml
 

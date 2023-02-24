@@ -26,3 +26,10 @@
     executable: /bin/zsh
   tags:
     - ruby
+- name: Installs bundler
+  become: false
+  shell: gem install bundler:1.17.3
+  args:
+    executable: /bin/zsh
+  tags:
+    - ruby
