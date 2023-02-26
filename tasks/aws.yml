@@ -1,0 +1,44 @@
+- name: Download cli
+  shell: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  tags:
+    - aws
+- name: Unzip it
+  shell: unzip awscliv2.zip
+  tags:
+    - aws
+- name: Install it
+  shell: ./aws/install
+  tags:
+    - aws
+- name: Ensure .aws directory exists.
+  file:
+    dest: "{{ lookup('env', 'HOME') }}/.aws"
+    mode: 0700
+    state: directory
+  become: false
+  tags:
+    - aws
+    - ecoportal
+- name: Set aws config
+  copy:
+    src: ".aws/config"
+    dest: "{{ lookup('env', 'HOME') }}/.aws/config"
+    mode: 0600
+  become: false
+  tags:
+    - aws
+    - ecoportal
+- name: Set aws credentials
+  copy:
+    src: ".aws/credentials"
+    dest: "{{ lookup('env', 'HOME') }}/.aws/credentials"
+    mode: 0600
+  become: false
+  tags:
+    - aws
+    - ecoportal
+- name: ECR login
+  shell:  docker login --username AWS --password $(aws ecr get-login-password --region ap-southeast-2) 697073004009.dkr.ecr.ap-southeast-2.amazonaws.com
+  become: false
+  tags:
+    - aws
