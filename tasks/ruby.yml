@@ -19,6 +19,13 @@
     executable: /bin/zsh
   tags:
     - ruby
+- name: Installs nokogiri (solargraph requirement)
+  become: false
+  shell: gem install nokogiri -v 1.15.5 
+  args:
+    executable: /bin/zsh
+  tags:
+    - ruby
 - name: Installs solargraph
   become: false
   shell: gem install solargraph
