@@ -14,7 +14,7 @@
     - docker
 - name: Core 4
   apt:
-    name: ["i3", "rofi", "flameshot", "tmux", "fzf"]
+    name: ["i3", "polybar", "rofi", "flameshot", "tmux", "fzf"]
   tags:
     - i3
     - tmux

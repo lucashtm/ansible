@@ -29,6 +29,16 @@
     name: "stow"
   tags:
     - dotfiles
+- name: Stow sh
+  become_user: lucas
+  shell: chdir=$HOME/.dotfiles stow sh
+  tags:
+    - dotfiles
+- name: Stow bash
+  become_user: lucas
+  shell: chdir=$HOME/.dotfiles stow bash
+  tags:
+    - dotfiles
 - name: Stow zsh
   become_user: lucas
   shell: chdir=$HOME/.dotfiles stow zsh
@@ -47,6 +57,11 @@
 - name: Stow i3
   become_user: lucas
   command: chdir=$HOME/.dotfiles stow i3
+  tags:
+    - dotfiles
+- name: Stow polybar
+  become_user: lucas
+  command: chdir=$HOME/.dotfiles stow polybar
   tags:
     - dotfiles
 - name: Stow tmux
