@@ -29,7 +29,7 @@
     name: "stow"
   tags:
     - dotfiles
-- name: Delete remove .profile
+- name: Remove .profile
   file:
     path: "{{ lookup('env', 'HOME') }}/.profile"
     state: absent
@@ -38,11 +38,11 @@
   shell: chdir=$HOME/.dotfiles stow sh
   tags:
     - dotfiles
-- name: Delete remove .bashrc
+- name: Remove .bashrc
   file:
     path: "{{ lookup('env', 'HOME') }}/.bashrc"
     state: absent
-- name: Delete remove .bash_logout
+- name: Remove .bash_logout
   file:
     path: "{{ lookup('env', 'HOME') }}/.bash_logout"
     state: absent

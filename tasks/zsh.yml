@@ -3,21 +3,16 @@
   tags:
     - zsh
 - name: Change shell
-  shell: chsh -s `which zsh`
-  tags:
-    - zsh
-- name: Install oh-my-zsh
-  become: false
-  shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-  tags:
-    - zsh
-- name: Install zsh autosuggestions
-  ansible.builtin.git:
-    repo: "https://github.com/zsh-users/zsh-autosuggestions.git"
-    dest: "{{ lookup('env', 'HOME') }}/.oh-my-zsh/plugins/zsh-autosuggestions"
+  shell: chsh -s $(which zsh)
   tags:
     - zsh
 - name: Ensure .zshrc doesnt exist
   file:
     path: "{{ lookup('env', 'HOME') }}/.zshrc"
     state: absent
+- name: Fetch prezto
+  become_user: lucas
+  ansible.builtin.git:
+    repo: "git@github.com:sorin-ionescu/prezto.git"
+    dest: "{{ lookup('env', 'HOME') }}/.zprezto"
+    accept_hostkey: yes
