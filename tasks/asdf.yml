@@ -5,5 +5,4 @@
     dest: "{{ lookup('env', 'HOME') }}/.asdf"
     version: "v0.10.2"
   tags:
-    - node
     - asdf

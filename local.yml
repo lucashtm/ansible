@@ -12,7 +12,6 @@
         update_cache: true
       tags:
         - zsh
-        - node
   tasks:
     - include: tasks/core-utilities.yml
     - include: tasks/docker.yml
@@ -21,8 +20,6 @@
     - include: tasks/zsh.yml
     - include: tasks/asdf.yml
     - include: tasks/dotfiles.yml
-    - include: tasks/node.yml
-    - include: tasks/ruby.yml
     - include: tasks/neovim.yml
     - include: tasks/brave.yml
 

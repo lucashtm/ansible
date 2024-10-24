@@ -29,11 +29,23 @@
     name: "stow"
   tags:
     - dotfiles
+- name: Delete remove .profile
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.profile"
+    state: absent
 - name: Stow sh
   become_user: lucas
   shell: chdir=$HOME/.dotfiles stow sh
   tags:
     - dotfiles
+- name: Delete remove .bashrc
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.bashrc"
+    state: absent
+- name: Delete remove .bash_logout
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.bash_logout"
+    state: absent
 - name: Stow bash
   become_user: lucas
   shell: chdir=$HOME/.dotfiles stow bash
