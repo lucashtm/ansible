@@ -21,7 +21,6 @@
     - include: tasks/zsh.yml
     - include: tasks/asdf.yml
     - include: tasks/dotfiles.yml
-    - include: tasks/aws.yml
     - include: tasks/node.yml
     - include: tasks/ruby.yml
     - include: tasks/neovim.yml
